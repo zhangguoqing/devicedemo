@@ -14,8 +14,22 @@ from devicedemo.common import config as common_config
 import devicedemo.conf
 from devicedemo.common.i18n import _LI
 
-CONF = devicedemo.conf.CONF
+api_opts = [ 
+    cfg.IPOpt('host_ip',
+              default="0.0.0.0",
+              help='Host serving the API.'),
+    cfg.PortOpt('port',
+                default=8889,
+                help='Host port serving the API.'),
+    cfg.BoolOpt('pecan_debug',
+                default=False,
+                help='Toggle Pecan Debug Middleware.'),
+]
 
+CONF = cfg.CONF
+CONF.register_opts(api_opts, group='api')
+
+#CONF = devicedemo.conf.CONF
 LOG = log.getLogger(__name__)
 
 
